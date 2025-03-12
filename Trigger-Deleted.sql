@@ -34,7 +34,7 @@ BEGIN
 		gaji,                   
 		status,                 	--Coloumn gives the status, that it has been deleted
 		waktu_deleted           	--Coloumn for the time at the time of deletion
-	);
+	)
 
 
   
