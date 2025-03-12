@@ -44,7 +44,7 @@ SELECT
 	i.provinsi_alamat as provinsi_baru,     -- Given an alias, so that it is marked that this (New coloumn)
 	
 	'U',					-- Marked with a "U" means successfully updated
-	getdate ()				-- Record the time of updates in the main table (customers)
+	getdate()				-- Record the time of updates in the main table (customers)
 from
 	deleted as d				-- Saves data before update
 inner join
