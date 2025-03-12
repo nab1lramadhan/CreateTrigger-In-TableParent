@@ -8,19 +8,22 @@ CREATE TABLE u_customers (
     REFERENCES customers (customer_id) ON UPDATE CASCADE,       --Update related data in another table when the data in the main table is updated
   
     nama_lama VARCHAR (50),                                     -- Coloumn from the main table   (Old Coloumn)
-    nama_baru VARCHAR (50),                                     -- New Coloum              
+    nama_baru VARCHAR (50),                                     -- Coloumn From u_customers	 (New Coloumn)              
   
     provinsi_lama VARCHAR (50),                                 -- Coloumn from the main table   (Old Coloumn)
-    provinsi_baru VARCHAR (50),                                 -- New Coloumn                 
+    provinsi_baru VARCHAR (50),                                 -- Coloumn from u_customers	 (New Coloumn)                 
   
     status CHAR (1),                                            -- To give a status that the data has been updated                                     
     waktu_update DATETIME                                       -- Records the time, at the time of the update
 );
 
+
+-- Create triggers with update_customers name for the main table (customers)
 CREATE TRIGGER update_customers ON customers
-AFTER UPDATE
+AFTER UPDATE	-- Keep a record of updates
 AS
 BEGIN
+
 INSERT INTO u_customers (
 	customer_id,
 	nama_lama,
