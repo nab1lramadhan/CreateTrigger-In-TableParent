@@ -36,7 +36,7 @@ INSERT INTO u_customers (
 	);
 
 SELECT
-	d.customer_id,
+	d.customer_id,				-- Storing customer_id of deleted customer data	
 	d.nama_customer as nama_lama,		-- Given an alias, so that it is marked that this (Old coloumn)
 	i.nama_customer as nama_baru,		-- Given an alias, so that it is marked that this (New coloumn)
 	
@@ -46,10 +46,10 @@ SELECT
 	'U',					-- Marked with a "U" means successfully updated
 	getdate ()				-- Record the time of updates in the main table (customers)
 from
-	deleted as d
+	deleted as d				-- Saves data before update
 inner join
-	inserted as i
+	inserted as i				-- Saves data after update
 on
-	d.customer_id = i.customer_id
+	d.customer_id = i.customer_id		-- Combining deleted data with newly updated (inserted) data based on customer_id
 
 end
