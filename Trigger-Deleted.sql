@@ -1,26 +1,29 @@
---For the history table, from the main table
+-- For the history table, from the main table
+-- Make sure the number of main columns of the main table matches
+
 CREATE TABLE d_customers (
-	history_id INT IDENTITY (1,1) PRIMARY KEY,                      --New Coloumn
-	customer_id INT                                                 --Coloumn From Table Main
-	FOREIGN KEY (customer_id) REFERENCES customers (customer_id),   --Make a reference to the main table (customers)
+	history_id INT IDENTITY (1,1) PRIMARY KEY,                      -- Gives a unique number, for each new row that increments itself, after executing the
+	customer_id INT                                                 -- Coloumn From Table Main
+	FOREIGN KEY (customer_id) 
+	REFERENCES customers (customer_id) ON DELETE CASCADE,   	-- Automatically delete related data in other tables when data in the main (customers) table is deleted
   
-	nama_customer CHAR (50),                                        --Coloumn From Table Main
-	tanggal_lahir DATE,                                             --Coloumn From Table Main
-	provinsi_alamat VARCHAR (30),                                   --Coloumn From Table Main
-	jenis_kelamin CHAR (1),                                         --Coloumn From Table Main
-	status_nikah CHAR (1),                                          --Coloumn From Table Main
-	gaji INT,                                                       --Coloumn From Table Main
-	status CHAR (1),                                                --New Coloumn
-	waktu_deleted DATETIME)                                         --New Coloumn
+	nama_customer CHAR (50),                                        -- Coloumn From Table Main
+	tanggal_lahir DATE,                                             -- Coloumn From Table Main
+	provinsi_alamat VARCHAR (30),                                   -- Coloumn From Table Main
+	jenis_kelamin CHAR (1),                                         -- Coloumn From Table Main
+	status_nikah CHAR (1),                                          -- Coloumn From Table Main
+	gaji INT,                                                       -- Coloumn From Table Main
+	status CHAR (1),                                                -- New Coloumn, Gives a status of "D" which means it has been deleted
+	waktu_deleted DATETIME)                                         -- New Coloumn, To know when a delete occurred
   );
 
 
---Main table (customers), which will be created to have a history in the d_customers table
-CREATE TRIGGER d_customers ON customers 
-AFTER DELETE  
+-- Create a trigger, named (deleted_customers) for the main table (customers)
+CREATE TRIGGER deleted_customers ON customers 
+AFTER DELETE  -- Processing deleted data
 AS
 BEGIN
---Which will save the history, if there is a delete in the main table (customers)
+	-- Which will save the history, if there is a delete in the main table (customers)
 	INSERT INTO d_customers (     
 		customer_id,            
 		nama_customer,         
@@ -47,5 +50,5 @@ BEGIN
 		'D',                   -- Indicates that the customer has been deleted (D)
 		GETDATE()              -- Instant retrieved deletion time
 	FROM deleted             
-	print 'Deleted data is stored in Table d_customers' 	--Gives a message that the data has been copied
+	print 'Deleted data is stored in Table d_customers' 	-- Gives a message that the data has been deleted, and the history is in the d_customers table
 END
