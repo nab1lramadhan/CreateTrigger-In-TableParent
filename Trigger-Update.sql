@@ -33,7 +33,7 @@ INSERT INTO u_customers (
 	provinsi_baru,
 	status,			-- Saves status, which means the data is updated successfully
 	waktu_update		-- Record the time of updates in the main table (customers)
-	);
+	)
 
 SELECT
 	d.customer_id,				-- Storing customer_id of deleted customer data	
