@@ -23,25 +23,28 @@ CREATE TRIGGER update_customers ON customers
 AFTER UPDATE	-- Keep a record of updates
 AS
 BEGIN
-
+	
+-- Which will save the history, if there is an update in the main table (customers)
 INSERT INTO u_customers (
 	customer_id,
 	nama_lama,
 	nama_baru,
 	provinsi_lama,
 	provinsi_baru,
-	status,
-	waktu_update
-	)
+	status,			-- Saves status, which means the data is updated successfully
+	waktu_update		-- Record the time of updates in the main table (customers)
+	);
 
-select
+SELECT
 	d.customer_id,
-	d.nama_customer as nama_lama,
-	i.nama_customer as nama_baru,
-	d.provinsi_alamat as provinsi_lama,
-	i.provinsi_alamat as provinsi_baru,
-	'U',
-	getdate ()
+	d.nama_customer as nama_lama,		-- Given an alias, so that it is marked that this (Old coloumn)
+	i.nama_customer as nama_baru,		-- Given an alias, so that it is marked that this (New coloumn)
+	
+	d.provinsi_alamat as provinsi_lama,	-- Given an alias, so that it is marked that this (Old coloumn)
+	i.provinsi_alamat as provinsi_baru,     -- Given an alias, so that it is marked that this (New coloumn)
+	
+	'U',					-- Marked with a "U" means successfully updated
+	getdate ()				-- Record the time of updates in the main table (customers)
 from
 	deleted as d
 inner join
