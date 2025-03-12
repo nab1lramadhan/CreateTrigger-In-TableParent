@@ -20,8 +20,7 @@ CREATE TRIGGER d_customers ON customers
 AFTER DELETE  
 AS
 BEGIN
-
-  --Which will save the history, if there is a delete in the main table (customers)
+--Which will save the history, if there is a delete in the main table (customers)
 	INSERT INTO d_customers (     
 		customer_id,            
 		nama_customer,         
@@ -30,11 +29,13 @@ BEGIN
 		jenis_kelamin,         
 		status_nikah,           
 		gaji,                   
-		status,                 -- Status penghapusan ('D' untuk Deleted)
-		waktu_deleted           -- Waktu penghapusan
+		status,                 	--Coloumn gives the status, that it has been deleted
+		waktu_deleted           	--Coloumn for the time at the time of deletion
 	);
+
+
   
-	-- Mengambil data yang dihapus dari tabel 'customers' dan memasukkannya ke Riwayat_Deleted_Customers
+	-- Retrieve deleted data from the main table (customers) and enter it into the history table (d_customers)
 	SELECT
 		customer_id,
 		nama_customer,
@@ -43,8 +44,8 @@ BEGIN
 		jenis_kelamin,
 		status_nikah,
 		gaji,
-		'D',                   -- Menandakan bahwa pelanggan sudah dihapus (D)
-		GETDATE()              -- Waktu penghapusan yang diambil langsung
+		'D',                   -- Indicates that the customer has been deleted (D)
+		GETDATE()              -- Instant retrieved deletion time
 	FROM deleted             
-	print 'Data Yang Dihapus Disimpan Di Table Riwayat_Deleted_Customers' -- Memberikan pesan bahwa data telah disalin
+	print 'Deleted data is stored in Table d_customers' 	--Gives a message that the data has been copied
 END
