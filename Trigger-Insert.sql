@@ -9,7 +9,7 @@ CREATE TABLE i_customers (
   
 	nama_customer VARCHAR (50),                             -- Coloumn from the main table (customers)
 	tanggal_lahir DATE,                                     -- Coloumn from the main table (customers)
-	provinsi_alamat CHAR (40),                              -- Coloumn from the main table (customers)
+	provinsi_alamat VARCHAR (40),                           -- Coloumn from the main table (customers)
 	jenis_kelamin CHAR (1),	                                -- Coloumn from the main table (customers)
 	status_nikah CHAR (1),                                  -- Coloumn from the main table (customers)
 	gaji INT,                                               -- Coloumn from the main table (customers)
