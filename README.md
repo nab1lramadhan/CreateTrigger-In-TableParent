@@ -29,10 +29,10 @@ Used to ensure that the data in the history table is organized, this is the expl
    To record when an execution occurred from the main table and recorded its time in the history table
 
 
-That's all my explanation, for more details I have given the explanation
+That's all my explanation, for more details I have given the explanation,
 in each trigger update, insert and deleted file
 
 
-Thank you 
-Muhammad Nabil Ramadhan
-muh.nabilramadhannn@gmail.com
+Thank you.. 
+- Muhammad Nabil Ramadhan
+- muh.nabilramadhannn@gmail.com
