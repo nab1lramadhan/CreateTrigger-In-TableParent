@@ -54,7 +54,7 @@ There are various ways if you want to delete. At the time of creating the main t
 - drop trigger if exists (Trigger Name)
 
 
---
+---
 
 Purpose
 
