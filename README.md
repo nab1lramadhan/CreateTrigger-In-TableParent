@@ -28,8 +28,8 @@ Used to indicate the action taken:
 - "A" = Added (Insert)
 - "U" = Updated
 - "D" = Deleted
-
-This ensures that the data in the history table reflects the type of modification in the main table.
+  
+  This ensures that the data in the history table reflects the type of modification in the main table.
 
 
 3. waktu_insert / waktu_update / waktu_deleted:
@@ -38,6 +38,23 @@ This helps track changes over time, giving visibility into data modifications.
 
 
 ---
+
+There are various ways if you want to delete. At the time of creating the main table, the history table and the trigger:
+
+1. Use this if you get an error that you have to delete it in the main table:
+
+- drop table if exists (Main Table Name)
+
+2. Use this if you encounter an error that you need to delete it in the history table:
+
+- drop table if exists (Name of Table History)
+
+3. Use this if you encounter an error that you have to delete in trigger creation: 
+
+- drop trigger if exists (Trigger Name)
+
+
+--
 
 Purpose
 
