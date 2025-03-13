@@ -54,5 +54,5 @@ For more detailed explanations, check the comments in each trigger file:
 ---
 
 Thanks!....
-~ Muhammad Nabil Ramadhan
-~ muh.nabilramadhannn@gmail.com
+- Muhammad Nabil Ramadhan
+- muh.nabilramadhannn@gmail.com
