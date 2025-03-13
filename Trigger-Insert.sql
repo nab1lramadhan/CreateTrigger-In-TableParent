@@ -35,7 +35,8 @@ INSERT INTO i_customers (
 	gaji,
 	status,
 	waktu_insert)
-
+	
+-- Retrieve Insert data from the main table (customers) and enter it into the history table (i_customers)
 SELECT 
 	customer_id,
 	nama_customer,
