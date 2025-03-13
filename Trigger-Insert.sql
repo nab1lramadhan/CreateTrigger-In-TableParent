@@ -23,8 +23,9 @@ CREATE TRIGGER after_insert_customers ON customers
 AFTER INSERT  -- Process data that has just been inserted from the main table (customers)
 AS
 BEGIN
---  
-INSERT INTO	i_customers (
+	
+-- Which will store the history, if there is an insert in the main table (customer)
+INSERT INTO i_customers (
 	customer_id,
 	nama_customer,
 	tanggal_lahir,
@@ -43,8 +44,8 @@ SELECT
 	jenis_kelamin,
 	status_nikah,
 	gaji,
-	'A',
-	getdate ()
+	'A',			-- Mark "A", which means the data was successfully inserted
+	getdate ()		-- Taking the time of the insert 
 FROM
-	inserted
+	inserted	        -- A virtual table that contains data that has just been inserted into the main table (customers)
 END
